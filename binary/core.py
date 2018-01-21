@@ -2,17 +2,17 @@ from __future__ import division
 
 from collections import OrderedDict, namedtuple
 
-BYTE = B = 1
-KIBIBYTE = KB = BYTE * 1024
-MEBIBYTE = MB = KIBIBYTE * 1024
-GIBIBYTE = GB = MEBIBYTE * 1024
-TEBIBYTE = TB = GIBIBYTE * 1024
-PEBIBYTE = PB = TEBIBYTE * 1024
-EXBIBYTE = EB = PEBIBYTE * 1024
-ZEBIBYTE = ZB = EXBIBYTE * 1024
-YOBIBYTE = YB = ZEBIBYTE * 1024
+BYTE = 1
+KIBIBYTE = BYTE * 1024
+MEBIBYTE = KIBIBYTE * 1024
+GIBIBYTE = MEBIBYTE * 1024
+TEBIBYTE = GIBIBYTE * 1024
+PEBIBYTE = TEBIBYTE * 1024
+EXBIBYTE = PEBIBYTE * 1024
+ZEBIBYTE = EXBIBYTE * 1024
+YOBIBYTE = ZEBIBYTE * 1024
 
-BINARY_PREFIX = OrderedDict((
+PREFIXES = OrderedDict((
     (BYTE, 'B'),
     (KIBIBYTE, 'KiB'),
     (MEBIBYTE, 'MiB'),
@@ -25,7 +25,7 @@ BINARY_PREFIX = OrderedDict((
 ))
 
 
-units = namedtuple(
+bunits = namedtuple(
     'BinaryUnits', (
         'BYTE', 'B',
         'KIBIBYTE', 'KB',
@@ -38,15 +38,15 @@ units = namedtuple(
         'YOBIBYTE', 'YB',
     )
 )(
-    BYTE, B,
-    KIBIBYTE, KB,
-    MEBIBYTE, MB,
-    GIBIBYTE, GB,
-    TEBIBYTE, TB,
-    PEBIBYTE, PB,
-    EXBIBYTE, EB,
-    ZEBIBYTE, ZB,
-    YOBIBYTE, YB,
+    BYTE, BYTE,
+    KIBIBYTE, KIBIBYTE,
+    MEBIBYTE, MEBIBYTE,
+    GIBIBYTE, GIBIBYTE,
+    TEBIBYTE, TEBIBYTE,
+    PEBIBYTE, PEBIBYTE,
+    EXBIBYTE, EXBIBYTE,
+    ZEBIBYTE, ZEBIBYTE,
+    YOBIBYTE, YOBIBYTE,
 )
 
 
@@ -69,7 +69,7 @@ def convert_units(n, unit=BYTE, to=None):
     :returns: The unit pair: a numeric quantity and the unit's string.
     :rtype: tuple(quantity, string)
     """
-    if unit not in BINARY_PREFIX:
+    if unit not in PREFIXES:
         raise ValueError('{} is not a valid binary unit.'.format(unit))
 
     # Always work with bytes to simplify logic.
@@ -77,7 +77,7 @@ def convert_units(n, unit=BYTE, to=None):
 
     if to:
         try:
-            return n / to, BINARY_PREFIX[to]
+            return n / to, PREFIXES[to]
         except KeyError:
             raise ValueError('{} is not a valid binary unit.'.format(to))
     elif n < KIBIBYTE:

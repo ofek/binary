@@ -3,139 +3,139 @@ from __future__ import division
 import pytest
 
 import binary
-from binary import units
-from binary.core import BINARY_PREFIX
+from binary import convert_units, bunits
+from binary.core import PREFIXES
 
 
 class TestConstants:
     def test_byte(self):
-        assert binary.BYTE == binary.B == units.BYTE == units.B == 1024 ** 0
+        assert binary.BYTE == bunits.BYTE == bunits.B == 1024 ** 0
 
     def test_kibibyte(self):
-        assert binary.KIBIBYTE == binary.KB == units.KIBIBYTE == units.KB == 1024 ** 1
+        assert binary.KIBIBYTE == bunits.KIBIBYTE == bunits.KB == 1024 ** 1
 
     def test_mebibyte(self):
-        assert binary.MEBIBYTE == binary.MB == units.MEBIBYTE == units.MB == 1024 ** 2
+        assert binary.MEBIBYTE == bunits.MEBIBYTE == bunits.MB == 1024 ** 2
 
     def test_gibibyte(self):
-        assert binary.GIBIBYTE == binary.GB == units.GIBIBYTE == units.GB == 1024 ** 3
+        assert binary.GIBIBYTE == bunits.GIBIBYTE == bunits.GB == 1024 ** 3
 
     def test_tebibyte(self):
-        assert binary.TEBIBYTE == binary.TB == units.TEBIBYTE == units.TB == 1024 ** 4
+        assert binary.TEBIBYTE == bunits.TEBIBYTE == bunits.TB == 1024 ** 4
 
     def test_pebibyte(self):
-        assert binary.PEBIBYTE == binary.PB == units.PEBIBYTE == units.PB == 1024 ** 5
+        assert binary.PEBIBYTE == bunits.PEBIBYTE == bunits.PB == 1024 ** 5
 
     def test_exbibyte(self):
-        assert binary.EXBIBYTE == binary.EB == units.EXBIBYTE == units.EB == 1024 ** 6
+        assert binary.EXBIBYTE == bunits.EXBIBYTE == bunits.EB == 1024 ** 6
 
     def test_zebibyte(self):
-        assert binary.ZEBIBYTE == binary.ZB == units.ZEBIBYTE == units.ZB == 1024 ** 7
+        assert binary.ZEBIBYTE == bunits.ZEBIBYTE == bunits.ZB == 1024 ** 7
 
     def test_yobibyte(self):
-        assert binary.YOBIBYTE == binary.YB == units.YOBIBYTE == units.YB == 1024 ** 8
+        assert binary.YOBIBYTE == bunits.YOBIBYTE == bunits.YB == 1024 ** 8
 
 
 class TestAccurateString:
     def test_byte(self):
-        assert BINARY_PREFIX[binary.BYTE] == 'B'
+        assert PREFIXES[bunits.BYTE] == 'B'
 
     def test_kibibyte(self):
-        assert BINARY_PREFIX[binary.KIBIBYTE] == 'KiB'
+        assert PREFIXES[bunits.KIBIBYTE] == 'KiB'
 
     def test_mebibyte(self):
-        assert BINARY_PREFIX[binary.MEBIBYTE] == 'MiB'
+        assert PREFIXES[bunits.MEBIBYTE] == 'MiB'
 
     def test_gibibyte(self):
-        assert BINARY_PREFIX[binary.GIBIBYTE] == 'GiB'
+        assert PREFIXES[bunits.GIBIBYTE] == 'GiB'
 
     def test_tebibyte(self):
-        assert BINARY_PREFIX[binary.TEBIBYTE] == 'TiB'
+        assert PREFIXES[bunits.TEBIBYTE] == 'TiB'
 
     def test_pebibyte(self):
-        assert BINARY_PREFIX[binary.PEBIBYTE] == 'PiB'
+        assert PREFIXES[bunits.PEBIBYTE] == 'PiB'
 
     def test_exbibyte(self):
-        assert BINARY_PREFIX[binary.EXBIBYTE] == 'EiB'
+        assert PREFIXES[bunits.EXBIBYTE] == 'EiB'
 
     def test_zebibyte(self):
-        assert BINARY_PREFIX[binary.ZEBIBYTE] == 'ZiB'
+        assert PREFIXES[bunits.ZEBIBYTE] == 'ZiB'
 
     def test_yobibyte(self):
-        assert BINARY_PREFIX[binary.YOBIBYTE] == 'YiB'
+        assert PREFIXES[bunits.YOBIBYTE] == 'YiB'
 
 
 class TestConvert:
     def test_byte(self):
-        assert binary.convert_units(1, binary.YB, binary.B) == (binary.YB / 1024 ** 0, 'B')
+        assert convert_units(1, bunits.YB, bunits.B) == (bunits.YB / 1024 ** 0, 'B')
 
     def test_kibibyte(self):
-        assert binary.convert_units(1, binary.YB, binary.KB) == (binary.YB / 1024 ** 1, 'KiB')
+        assert convert_units(1, bunits.YB, bunits.KB) == (bunits.YB / 1024 ** 1, 'KiB')
 
     def test_mebibyte(self):
-        assert binary.convert_units(1, binary.YB, binary.MB) == (binary.YB / 1024 ** 2, 'MiB')
+        assert convert_units(1, bunits.YB, bunits.MB) == (bunits.YB / 1024 ** 2, 'MiB')
 
     def test_gibibyte(self):
-        assert binary.convert_units(1, binary.YB, binary.GB) == (binary.YB / 1024 ** 3, 'GiB')
+        assert convert_units(1, bunits.YB, bunits.GB) == (bunits.YB / 1024 ** 3, 'GiB')
 
     def test_tebibyte(self):
-        assert binary.convert_units(1, binary.YB, binary.TB) == (binary.YB / 1024 ** 4, 'TiB')
+        assert convert_units(1, bunits.YB, bunits.TB) == (bunits.YB / 1024 ** 4, 'TiB')
 
     def test_pebibyte(self):
-        assert binary.convert_units(1, binary.YB, binary.PB) == (binary.YB / 1024 ** 5, 'PiB')
+        assert convert_units(1, bunits.YB, bunits.PB) == (bunits.YB / 1024 ** 5, 'PiB')
 
     def test_exbibyte(self):
-        assert binary.convert_units(1, binary.YB, binary.EB) == (binary.YB / 1024 ** 6, 'EiB')
+        assert convert_units(1, bunits.YB, bunits.EB) == (bunits.YB / 1024 ** 6, 'EiB')
 
     def test_zebibyte(self):
-        assert binary.convert_units(1, binary.YB, binary.ZB) == (binary.YB / 1024 ** 7, 'ZiB')
+        assert convert_units(1, bunits.YB, bunits.ZB) == (bunits.YB / 1024 ** 7, 'ZiB')
 
     def test_yobibyte(self):
-        assert binary.convert_units(1, binary.YB, binary.YB) == (binary.YB / 1024 ** 8, 'YiB')
+        assert convert_units(1, bunits.YB, bunits.YB) == (bunits.YB / 1024 ** 8, 'YiB')
 
 
 class TestConvertUnknownTo:
     def test_byte(self):
-        assert binary.convert_units(binary.B) == (binary.B, 'B')
-        assert binary.convert_units(binary.KB - 1) == (binary.KB - 1, 'B')
+        assert convert_units(bunits.B) == (bunits.B, 'B')
+        assert convert_units(bunits.KB - 1) == (bunits.KB - 1, 'B')
 
     def test_kibibyte(self):
-        assert binary.convert_units(binary.KB) == (binary.KB / binary.KB, 'KiB')
-        assert binary.convert_units(binary.MB - 1) == ((binary.MB - 1) / binary.KB, 'KiB')
+        assert convert_units(bunits.KB) == (bunits.KB / bunits.KB, 'KiB')
+        assert convert_units(bunits.MB - 1) == ((bunits.MB - 1) / bunits.KB, 'KiB')
 
     def test_mebibyte(self):
-        assert binary.convert_units(binary.MB) == (binary.MB / binary.MB, 'MiB')
-        assert binary.convert_units(binary.GB - 1) == ((binary.GB - 1) / binary.MB, 'MiB')
+        assert convert_units(bunits.MB) == (bunits.MB / bunits.MB, 'MiB')
+        assert convert_units(bunits.GB - 1) == ((bunits.GB - 1) / bunits.MB, 'MiB')
 
     def test_gibibyte(self):
-        assert binary.convert_units(binary.GB) == (binary.GB / binary.GB, 'GiB')
-        assert binary.convert_units(binary.TB - 1) == ((binary.TB - 1) / binary.GB, 'GiB')
+        assert convert_units(bunits.GB) == (bunits.GB / bunits.GB, 'GiB')
+        assert convert_units(bunits.TB - 1) == ((bunits.TB - 1) / bunits.GB, 'GiB')
 
     def test_tebibyte(self):
-        assert binary.convert_units(binary.TB) == (binary.TB / binary.TB, 'TiB')
-        assert binary.convert_units(binary.PB - 1) == ((binary.PB - 1) / binary.TB, 'TiB')
+        assert convert_units(bunits.TB) == (bunits.TB / bunits.TB, 'TiB')
+        assert convert_units(bunits.PB - 1) == ((bunits.PB - 1) / bunits.TB, 'TiB')
 
     def test_pebibyte(self):
-        assert binary.convert_units(binary.PB) == (binary.PB / binary.PB, 'PiB')
-        assert binary.convert_units(binary.EB - 1) == ((binary.EB - 1) / binary.PB, 'PiB')
+        assert convert_units(bunits.PB) == (bunits.PB / bunits.PB, 'PiB')
+        assert convert_units(bunits.EB - 1) == ((bunits.EB - 1) / bunits.PB, 'PiB')
 
     def test_exbibyte(self):
-        assert binary.convert_units(binary.EB) == (binary.EB / binary.EB, 'EiB')
-        assert binary.convert_units(binary.ZB - 1) == ((binary.ZB - 1) / binary.EB, 'EiB')
+        assert convert_units(bunits.EB) == (bunits.EB / bunits.EB, 'EiB')
+        assert convert_units(bunits.ZB - 1) == ((bunits.ZB - 1) / bunits.EB, 'EiB')
 
     def test_zebibyte(self):
-        assert binary.convert_units(binary.ZB) == (binary.ZB / binary.ZB, 'ZiB')
-        assert binary.convert_units(binary.YB - 1) == ((binary.YB - 1) / binary.ZB, 'ZiB')
+        assert convert_units(bunits.ZB) == (bunits.ZB / bunits.ZB, 'ZiB')
+        assert convert_units(bunits.YB - 1) == ((bunits.YB - 1) / bunits.ZB, 'ZiB')
 
     def test_yobibyte(self):
-        assert binary.convert_units(binary.YB) == (binary.YB / binary.YB, 'YiB')
+        assert convert_units(bunits.YB) == (bunits.YB / bunits.YB, 'YiB')
 
 
 class TestUnknownUnits:
     def test_unit(self):
         with pytest.raises(ValueError):
-            binary.convert_units(1, unit=1000)
+            convert_units(1, unit=1000)
 
     def test_to(self):
         with pytest.raises(ValueError):
-            binary.convert_units(1, to=1000)
+            convert_units(1, to=1000)
