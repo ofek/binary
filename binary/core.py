@@ -30,10 +30,6 @@ def convert_units(n, unit=BYTE, to=None):
     specified, ``n`` is assumed to already be in bytes. If no ``to`` is
     specified, ``n`` will be converted to the highest unit possible.
 
-    Examples:
-        1023 returns (1023, 'B')
-        1024 returns (1, 'KiB')
-
     Units conform to IEC standards, see:
     https://en.wikipedia.org/wiki/Binary_prefix
     https://en.wikipedia.org/wiki/IEC_80000-13
