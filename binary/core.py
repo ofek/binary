@@ -44,32 +44,32 @@ def convert_units(n, unit=BYTE, to=None):
     :returns: The unit pair, a numeric quantity and the unit's string.
     :rtype: tuple(quantity, string)
     """
+    if unit not in BINARY_PREFIX:
+        raise ValueError('{} is not a valid binary unit.'.format(unit))
 
     # Always work with bytes to simplify logic.
     n *= unit
 
-    try:
-        if to:
+    if to:
+        try:
             return n / to, BINARY_PREFIX[to]
-        elif n < KIBIBYTE:
-            return n, BINARY_PREFIX[BYTE]
-        elif n < MEBIBYTE:
-            return n / KIBIBYTE, BINARY_PREFIX[KIBIBYTE]
-        elif n < GIBIBYTE:
-            return n / MEBIBYTE, BINARY_PREFIX[MEBIBYTE]
-        elif n < TEBIBYTE:
-            return n / GIBIBYTE, BINARY_PREFIX[GIBIBYTE]
-        elif n < PEBIBYTE:
-            return n / TEBIBYTE, BINARY_PREFIX[TEBIBYTE]
-        elif n < EXBIBYTE:
-            return n / PEBIBYTE, BINARY_PREFIX[PEBIBYTE]
-        elif n < ZEBIBYTE:
-            return n / EXBIBYTE, BINARY_PREFIX[EXBIBYTE]
-        elif n < YOBIBYTE:
-            return n / ZEBIBYTE, BINARY_PREFIX[ZEBIBYTE]
-        else:
-            return n / YOBIBYTE, BINARY_PREFIX[YOBIBYTE]
-    except KeyError:
-        raise ValueError('{} is not a valid binary unit.'.format(
-            to if unit in BINARY_PREFIX else unit
-        ))
+        except KeyError:
+            raise ValueError('{} is not a valid binary unit.'.format(to))
+    elif n < KIBIBYTE:
+        return n, 'B'
+    elif n < MEBIBYTE:
+        return n / KIBIBYTE, 'KiB'
+    elif n < GIBIBYTE:
+        return n / MEBIBYTE, 'MiB'
+    elif n < TEBIBYTE:
+        return n / GIBIBYTE, 'GiB'
+    elif n < PEBIBYTE:
+        return n / TEBIBYTE, 'TiB'
+    elif n < EXBIBYTE:
+        return n / PEBIBYTE, 'PiB'
+    elif n < ZEBIBYTE:
+        return n / EXBIBYTE, 'EiB'
+    elif n < YOBIBYTE:
+        return n / ZEBIBYTE, 'ZiB'
+    else:
+        return n / YOBIBYTE, 'YiB'
