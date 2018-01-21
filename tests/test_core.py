@@ -1,5 +1,7 @@
 from __future__ import division
 
+import pytest
+
 import binary
 from binary.core import BINARY_PREFIX
 
@@ -126,3 +128,13 @@ class TestConvertUnknownTo:
 
     def test_yobibyte(self):
         assert binary.convert_units(binary.YB) == (binary.YB / binary.YB, 'YiB')
+
+
+class TestUnknownUnits:
+    def test_unit(self):
+        with pytest.raises(ValueError):
+            binary.convert_units(1, unit=1000)
+
+    def test_to(self):
+        with pytest.raises(ValueError):
+            binary.convert_units(1, to=1000)
