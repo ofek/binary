@@ -3,36 +3,37 @@ from __future__ import division
 import pytest
 
 import binary
+from binary import units
 from binary.core import BINARY_PREFIX
 
 
 class TestConstants:
     def test_byte(self):
-        assert binary.BYTE == binary.B == 1024 ** 0
+        assert binary.BYTE == binary.B == units.BYTE == units.B == 1024 ** 0
 
     def test_kibibyte(self):
-        assert binary.KIBIBYTE == binary.KB == 1024 ** 1
+        assert binary.KIBIBYTE == binary.KB == units.KIBIBYTE == units.KB == 1024 ** 1
 
     def test_mebibyte(self):
-        assert binary.MEBIBYTE == binary.MB == 1024 ** 2
+        assert binary.MEBIBYTE == binary.MB == units.MEBIBYTE == units.MB == 1024 ** 2
 
     def test_gibibyte(self):
-        assert binary.GIBIBYTE == binary.GB == 1024 ** 3
+        assert binary.GIBIBYTE == binary.GB == units.GIBIBYTE == units.GB == 1024 ** 3
 
     def test_tebibyte(self):
-        assert binary.TEBIBYTE == binary.TB == 1024 ** 4
+        assert binary.TEBIBYTE == binary.TB == units.TEBIBYTE == units.TB == 1024 ** 4
 
     def test_pebibyte(self):
-        assert binary.PEBIBYTE == binary.PB == 1024 ** 5
+        assert binary.PEBIBYTE == binary.PB == units.PEBIBYTE == units.PB == 1024 ** 5
 
     def test_exbibyte(self):
-        assert binary.EXBIBYTE == binary.EB == 1024 ** 6
+        assert binary.EXBIBYTE == binary.EB == units.EXBIBYTE == units.EB == 1024 ** 6
 
     def test_zebibyte(self):
-        assert binary.ZEBIBYTE == binary.ZB == 1024 ** 7
+        assert binary.ZEBIBYTE == binary.ZB == units.ZEBIBYTE == units.ZB == 1024 ** 7
 
     def test_yobibyte(self):
-        assert binary.YOBIBYTE == binary.YB == 1024 ** 8
+        assert binary.YOBIBYTE == binary.YB == units.YOBIBYTE == units.YB == 1024 ** 8
 
 
 class TestAccurateString:

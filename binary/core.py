@@ -1,6 +1,6 @@
 from __future__ import division
 
-from collections import OrderedDict
+from collections import OrderedDict, namedtuple
 
 BYTE = B = 1
 KIBIBYTE = KB = BYTE * 1024
@@ -23,6 +23,31 @@ BINARY_PREFIX = OrderedDict((
     (ZEBIBYTE, 'ZiB'),
     (YOBIBYTE, 'YiB'),
 ))
+
+
+units = namedtuple(
+    'BinaryUnits', (
+        'BYTE', 'B',
+        'KIBIBYTE', 'KB',
+        'MEBIBYTE', 'MB',
+        'GIBIBYTE', 'GB',
+        'TEBIBYTE', 'TB',
+        'PEBIBYTE', 'PB',
+        'EXBIBYTE', 'EB',
+        'ZEBIBYTE', 'ZB',
+        'YOBIBYTE', 'YB',
+    )
+)(
+    BYTE, B,
+    KIBIBYTE, KB,
+    MEBIBYTE, MB,
+    GIBIBYTE, GB,
+    TEBIBYTE, TB,
+    PEBIBYTE, PB,
+    EXBIBYTE, EB,
+    ZEBIBYTE, ZB,
+    YOBIBYTE, YB,
+)
 
 
 def convert_units(n, unit=BYTE, to=None):

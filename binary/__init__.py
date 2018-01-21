@@ -8,7 +8,7 @@ from .core import (
     EB, EXBIBYTE,
     ZB, ZEBIBYTE,
     YB, YOBIBYTE,
-    convert_units
+    convert_units, units
 )
 
 __version__ = '0.0.1'
