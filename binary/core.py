@@ -66,7 +66,7 @@ def convert_units(n, unit=BYTE, to=None):
     :type unit: one of the global constants
     :param to: The unit to convert to.
     :type to: one of the global constants
-    :returns: The unit pair, a numeric quantity and the unit's string.
+    :returns: The unit pair: a numeric quantity and the unit's string.
     :rtype: tuple(quantity, string)
     """
     if unit not in BINARY_PREFIX:
