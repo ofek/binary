@@ -1,6 +1,14 @@
 from .core import (
-    BYTE, KIBIBYTE, MEBIBYTE, GIBIBYTE, TEBIBYTE, PEBIBYTE, EXBIBYTE,
-    ZEBIBYTE, YOBIBYTE, convert_units, bunits
+    BYTE,
+    KIBIBYTE, KILOBYTE,
+    MEBIBYTE, MEGABYTE,
+    GIBIBYTE, GIGABYTE,
+    TEBIBYTE, TERABYTE,
+    PEBIBYTE, PETABYTE,
+    EXBIBYTE, EXABYTE,
+    ZEBIBYTE, ZETTABYTE,
+    YOBIBYTE, YOTTABYTE,
+    BinaryUnits, DecimalUnits, convert_units
 )
 
 __version__ = '0.0.1'

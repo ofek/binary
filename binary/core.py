@@ -1,8 +1,10 @@
 from __future__ import division
 
-from collections import OrderedDict, namedtuple
+from collections import namedtuple
 
 BYTE = 1
+
+# Binary
 KIBIBYTE = BYTE * 1024
 MEBIBYTE = KIBIBYTE * 1024
 GIBIBYTE = MEBIBYTE * 1024
@@ -12,20 +14,44 @@ EXBIBYTE = PEBIBYTE * 1024
 ZEBIBYTE = EXBIBYTE * 1024
 YOBIBYTE = ZEBIBYTE * 1024
 
-PREFIXES = OrderedDict((
-    (BYTE, 'B'),
-    (KIBIBYTE, 'KiB'),
-    (MEBIBYTE, 'MiB'),
-    (GIBIBYTE, 'GiB'),
-    (TEBIBYTE, 'TiB'),
-    (PEBIBYTE, 'PiB'),
-    (EXBIBYTE, 'EiB'),
-    (ZEBIBYTE, 'ZiB'),
-    (YOBIBYTE, 'YiB'),
-))
+# SI
+KILOBYTE = BYTE * 1000
+MEGABYTE = KILOBYTE * 1000
+GIGABYTE = MEGABYTE * 1000
+TERABYTE = GIGABYTE * 1000
+PETABYTE = TERABYTE * 1000
+EXABYTE = PETABYTE * 1000
+ZETTABYTE = EXABYTE * 1000
+YOTTABYTE = ZETTABYTE * 1000
+
+BINARY_PREFIXES = {
+    BYTE: 'B',
+    KIBIBYTE: 'KiB',
+    MEBIBYTE: 'MiB',
+    GIBIBYTE: 'GiB',
+    TEBIBYTE: 'TiB',
+    PEBIBYTE: 'PiB',
+    EXBIBYTE: 'EiB',
+    ZEBIBYTE: 'ZiB',
+    YOBIBYTE: 'YiB',
+}
+DECIMAL_PREFIXES = {
+    BYTE: 'B',
+    KILOBYTE: 'KB',
+    MEGABYTE: 'MB',
+    GIGABYTE: 'GB',
+    TERABYTE: 'TB',
+    PETABYTE: 'PB',
+    EXABYTE: 'EB',
+    ZETTABYTE: 'ZB',
+    YOTTABYTE: 'YB',
+}
+
+PREFIXES = BINARY_PREFIXES.copy()
+PREFIXES.update(DECIMAL_PREFIXES)
 
 
-bunits = namedtuple(
+BinaryUnits = namedtuple(
     'BinaryUnits', (
         'BYTE', 'B',
         'KIBIBYTE', 'KB',
@@ -47,6 +73,29 @@ bunits = namedtuple(
     EXBIBYTE, EXBIBYTE,
     ZEBIBYTE, ZEBIBYTE,
     YOBIBYTE, YOBIBYTE,
+)
+DecimalUnits = namedtuple(
+    'DecimalUnits', (
+        'BYTE', 'B',
+        'KILOBYTE', 'KB',
+        'MEGABYTE', 'MB',
+        'GIGABYTE', 'GB',
+        'TERABYTE', 'TB',
+        'PETABYTE', 'PB',
+        'EXABYTE', 'EB',
+        'ZETTABYTE', 'ZB',
+        'YOTTABYTE', 'YB',
+    )
+)(
+    BYTE, BYTE,
+    KILOBYTE, KILOBYTE,
+    MEGABYTE, MEGABYTE,
+    GIGABYTE, GIGABYTE,
+    TERABYTE, TERABYTE,
+    PETABYTE, PETABYTE,
+    EXABYTE, EXABYTE,
+    ZETTABYTE, ZETTABYTE,
+    YOTTABYTE, YOTTABYTE,
 )
 
 

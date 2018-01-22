@@ -3,7 +3,9 @@ from __future__ import division
 import pytest
 
 import binary
-from binary import convert_units, bunits
+from binary import (
+    BinaryUnits as bunits, convert_units
+)
 from binary.core import PREFIXES
 
 
@@ -134,8 +136,8 @@ class TestConvertUnknownTo:
 class TestUnknownUnits:
     def test_unit(self):
         with pytest.raises(ValueError):
-            convert_units(1, unit=1000)
+            convert_units(1, unit=5)
 
     def test_to(self):
         with pytest.raises(ValueError):
-            convert_units(1, to=1000)
+            convert_units(1, to=5)
