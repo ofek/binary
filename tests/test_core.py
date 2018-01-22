@@ -12,6 +12,7 @@ from binary.core import PREFIXES
 class TestConstants:
     def test_byte(self):
         assert binary.BYTE == bunits.BYTE == bunits.B == 1
+        assert binary.BYTE == dunits.BYTE == dunits.B == 1
 
     def test_kibibyte(self):
         assert binary.KIBIBYTE == bunits.KIBIBYTE == bunits.KB == 1024 ** 1
@@ -118,7 +119,8 @@ class TestAccurateString:
 
 class TestConvert:
     def test_byte(self):
-        assert convert_units(1, bunits.YB, bunits.B) == (bunits.YB / 1024 ** 0, 'B')
+        assert convert_units(1, bunits.YB, bunits.B) == (bunits.YB / 1, 'B')
+        assert convert_units(1, dunits.YB, dunits.B) == (dunits.YB / 1, 'B')
 
     def test_kibibyte(self):
         assert convert_units(1, bunits.YB, bunits.KB) == (bunits.YB / 1024 ** 1, 'KiB')
@@ -144,11 +146,37 @@ class TestConvert:
     def test_yobibyte(self):
         assert convert_units(1, bunits.YB, bunits.YB) == (bunits.YB / 1024 ** 8, 'YiB')
 
+    def test_kilobyte(self):
+        assert convert_units(1, dunits.YB, dunits.KB) == (dunits.YB / 1000 ** 1, 'KB')
+
+    def test_megabyte(self):
+        assert convert_units(1, dunits.YB, dunits.MB) == (dunits.YB / 1000 ** 2, 'MB')
+
+    def test_gigabyte(self):
+        assert convert_units(1, dunits.YB, dunits.GB) == (dunits.YB / 1000 ** 3, 'GB')
+
+    def test_terabyte(self):
+        assert convert_units(1, dunits.YB, dunits.TB) == (dunits.YB / 1000 ** 4, 'TB')
+
+    def test_petabyte(self):
+        assert convert_units(1, dunits.YB, dunits.PB) == (dunits.YB / 1000 ** 5, 'PB')
+
+    def test_exabyte(self):
+        assert convert_units(1, dunits.YB, dunits.EB) == (dunits.YB / 1000 ** 6, 'EB')
+
+    def test_zettabyte(self):
+        assert convert_units(1, dunits.YB, dunits.ZB) == (dunits.YB / 1000 ** 7, 'ZB')
+
+    def test_yottabyte(self):
+        assert convert_units(1, dunits.YB, dunits.YB) == (dunits.YB / 1000 ** 8, 'YB')
+
 
 class TestConvertUnknownTo:
     def test_byte(self):
         assert convert_units(bunits.B) == (bunits.B, 'B')
         assert convert_units(bunits.KB - 1) == (bunits.KB - 1, 'B')
+        assert convert_units(dunits.B, si=True) == (dunits.B, 'B')
+        assert convert_units(dunits.KB - 1, si=True) == (dunits.KB - 1, 'B')
 
     def test_kibibyte(self):
         assert convert_units(bunits.KB) == (bunits.KB / bunits.KB, 'KiB')
@@ -180,6 +208,37 @@ class TestConvertUnknownTo:
 
     def test_yobibyte(self):
         assert convert_units(bunits.YB) == (bunits.YB / bunits.YB, 'YiB')
+
+    def test_kilobyte(self):
+        assert convert_units(dunits.KB, si=True) == (dunits.KB / dunits.KB, 'KB')
+        assert convert_units(dunits.MB - 1, si=True) == ((dunits.MB - 1) / dunits.KB, 'KB')
+
+    def test_megabyte(self):
+        assert convert_units(dunits.MB, si=True) == (dunits.MB / dunits.MB, 'MB')
+        assert convert_units(dunits.GB - 1, si=True) == ((dunits.GB - 1) / dunits.MB, 'MB')
+
+    def test_gigabyte(self):
+        assert convert_units(dunits.GB, si=True) == (dunits.GB / dunits.GB, 'GB')
+        assert convert_units(dunits.TB - 1, si=True) == ((dunits.TB - 1) / dunits.GB, 'GB')
+
+    def test_terabyte(self):
+        assert convert_units(dunits.TB, si=True) == (dunits.TB / dunits.TB, 'TB')
+        assert convert_units(dunits.PB - 1, si=True) == ((dunits.PB - 1) / dunits.TB, 'TB')
+
+    def test_petabyte(self):
+        assert convert_units(dunits.PB, si=True) == (dunits.PB / dunits.PB, 'PB')
+        assert convert_units(dunits.EB - 1, si=True) == ((dunits.EB - 1) / dunits.PB, 'PB')
+
+    def test_exabyte(self):
+        assert convert_units(dunits.EB, si=True) == (dunits.EB / dunits.EB, 'EB')
+        assert convert_units(dunits.ZB - 1, si=True) == ((dunits.ZB - 1) / dunits.EB, 'EB')
+
+    def test_zettabyte(self):
+        assert convert_units(dunits.ZB, si=True) == (dunits.ZB / dunits.ZB, 'ZB')
+        assert convert_units(dunits.YB - 1, si=True) == ((dunits.YB - 1) / dunits.ZB, 'ZB')
+
+    def test_yottabyte(self):
+        assert convert_units(dunits.YB, si=True) == (dunits.YB / dunits.YB, 'YB')
 
 
 class TestUnknownUnits:
