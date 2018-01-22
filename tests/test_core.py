@@ -4,14 +4,14 @@ import pytest
 
 import binary
 from binary import (
-    BinaryUnits as bunits, convert_units
+    BinaryUnits as bunits, DecimalUnits as dunits, convert_units
 )
 from binary.core import PREFIXES
 
 
 class TestConstants:
     def test_byte(self):
-        assert binary.BYTE == bunits.BYTE == bunits.B == 1024 ** 0
+        assert binary.BYTE == bunits.BYTE == bunits.B == 1
 
     def test_kibibyte(self):
         assert binary.KIBIBYTE == bunits.KIBIBYTE == bunits.KB == 1024 ** 1
@@ -37,10 +37,35 @@ class TestConstants:
     def test_yobibyte(self):
         assert binary.YOBIBYTE == bunits.YOBIBYTE == bunits.YB == 1024 ** 8
 
+    def test_kilobyte(self):
+        assert binary.KILOBYTE == dunits.KILOBYTE == dunits.KB == 1000 ** 1
+
+    def test_megabyte(self):
+        assert binary.MEGABYTE == dunits.MEGABYTE == dunits.MB == 1000 ** 2
+
+    def test_gigabyte(self):
+        assert binary.GIGABYTE == dunits.GIGABYTE == dunits.GB == 1000 ** 3
+
+    def test_terabyte(self):
+        assert binary.TERABYTE == dunits.TERABYTE == dunits.TB == 1000 ** 4
+
+    def test_petabyte(self):
+        assert binary.PETABYTE == dunits.PETABYTE == dunits.PB == 1000 ** 5
+
+    def test_exabyte(self):
+        assert binary.EXABYTE == dunits.EXABYTE == dunits.EB == 1000 ** 6
+
+    def test_zettabyte(self):
+        assert binary.ZETTABYTE == dunits.ZETTABYTE == dunits.ZB == 1000 ** 7
+
+    def test_yottabyte(self):
+        assert binary.YOTTABYTE == dunits.YOTTABYTE == dunits.YB == 1000 ** 8
+
 
 class TestAccurateString:
     def test_byte(self):
         assert PREFIXES[bunits.BYTE] == 'B'
+        assert PREFIXES[dunits.BYTE] == 'B'
 
     def test_kibibyte(self):
         assert PREFIXES[bunits.KIBIBYTE] == 'KiB'
@@ -65,6 +90,30 @@ class TestAccurateString:
 
     def test_yobibyte(self):
         assert PREFIXES[bunits.YOBIBYTE] == 'YiB'
+
+    def test_kilobyte(self):
+        assert PREFIXES[dunits.KILOBYTE] == 'KB'
+
+    def test_megabyte(self):
+        assert PREFIXES[dunits.MEGABYTE] == 'MB'
+
+    def test_gigabyte(self):
+        assert PREFIXES[dunits.GIGABYTE] == 'GB'
+
+    def test_terabyte(self):
+        assert PREFIXES[dunits.TERABYTE] == 'TB'
+
+    def test_petabyte(self):
+        assert PREFIXES[dunits.PETABYTE] == 'PB'
+
+    def test_exabyte(self):
+        assert PREFIXES[dunits.EXABYTE] == 'EB'
+
+    def test_zettabyte(self):
+        assert PREFIXES[dunits.ZETTABYTE] == 'ZB'
+
+    def test_yottabyte(self):
+        assert PREFIXES[dunits.YOTTABYTE] == 'YB'
 
 
 class TestConvert:
