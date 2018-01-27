@@ -44,8 +44,8 @@ Python 2.7/3.5+ and PyPy.
 
     $ pip install binary
 
-Exaples
--------
+Examples
+--------
 
 Let's import what we need:
 
