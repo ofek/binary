@@ -2,6 +2,8 @@ from __future__ import division
 
 from collections import namedtuple
 
+from .utils import Decimal
+
 BYTE = 1
 
 # Binary
@@ -99,12 +101,13 @@ DecimalUnits = namedtuple(
 )
 
 
-def convert_units(n, unit=BYTE, to=None, si=False):
+def convert_units(n, unit=BYTE, to=None, si=False, exact=False):
     """Converts between and within binary and decimal units. If no ``unit``
     is specified, ``n`` is assumed to already be in bytes. If no ``to`` is
     specified, ``n`` will be converted to the highest unit possible. If
     no ``unit`` nor ``to`` is specified, the output will be binary units
-    unless ``si`` is ``True``.
+    unless ``si`` is ``True``. If ``exact`` is ``True``. the calculations
+    will use decimal.Decimal.
 
     Binary units conform to IEC standards, see:
     https://en.wikipedia.org/wiki/Binary_prefix
@@ -122,6 +125,8 @@ def convert_units(n, unit=BYTE, to=None, si=False):
     :type to: one of the global constants
     :param si: Assume SI units when no ``unit`` nor ``to`` is specified.
     :type si: ``bool``
+    :param exact: Use decimal.Decimal for calculations.
+    :type exact: ``bool``
     :returns: The unit pair: a numeric quantity and the unit's string.
     :rtype: tuple(quantity, string)
     """
@@ -129,7 +134,7 @@ def convert_units(n, unit=BYTE, to=None, si=False):
         raise ValueError('{} is not a valid binary unit.'.format(unit))
 
     # Always work with bytes to simplify logic.
-    n *= unit
+    n *= Decimal(unit) if exact else unit
 
     if to:
         try:

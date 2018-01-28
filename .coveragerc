@@ -5,6 +5,7 @@ source =
 branch = True
 omit =
     binary/cli.py
+    binary/utils.py
 
 [report]
 exclude_lines =
