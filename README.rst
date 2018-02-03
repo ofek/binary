@@ -112,22 +112,39 @@ Types
 | Type         | Short | Long      |
 +==============+=======+===========+
 | BinaryUnits  | B     | BYTE      |
++--------------+-------+-----------+
 | BinaryUnits  | KB    | KIBIBYTE  |
++--------------+-------+-----------+
 | BinaryUnits  | MB    | MEBIBYTE  |
++--------------+-------+-----------+
 | BinaryUnits  | GB    | GIBIBYTE  |
++--------------+-------+-----------+
 | BinaryUnits  | TB    | TEBIBYTE  |
++--------------+-------+-----------+
 | BinaryUnits  | PB    | PEBIBYTE  |
++--------------+-------+-----------+
 | BinaryUnits  | EB    | EXBIBYTE  |
++--------------+-------+-----------+
 | BinaryUnits  | ZB    | ZEBIBYTE  |
++--------------+-------+-----------+
 | BinaryUnits  | YB    | YOBIBYTE  |
++--------------+-------+-----------+
 | DecimalUnits | B     | BYTE      |
++--------------+-------+-----------+
 | DecimalUnits | KB    | KILOBYTE  |
++--------------+-------+-----------+
 | DecimalUnits | MB    | MEGABYTE  |
++--------------+-------+-----------+
 | DecimalUnits | GB    | GIGABYTE  |
++--------------+-------+-----------+
 | DecimalUnits | TB    | TERABYTE  |
++--------------+-------+-----------+
 | DecimalUnits | PB    | PETABYTE  |
++--------------+-------+-----------+
 | DecimalUnits | EB    | EXABYTE   |
++--------------+-------+-----------+
 | DecimalUnits | ZB    | ZETTABYTE |
++--------------+-------+-----------+
 | DecimalUnits | YB    | YOTTABYTE |
 +--------------+-------+-----------+
 
