@@ -89,12 +89,12 @@ no ``unit`` nor ``to`` is specified, the output will be binary units
 unless ``si`` is ``True``. If ``exact`` is ``True``. the calculations
 will use ``decimal.Decimal``.
 
-Binary units conform to IEC standards, see:
+| Binary units conform to IEC standards, see:
 | `<https://en.wikipedia.org/wiki/Binary_prefix>`_
 | `<https://en.wikipedia.org/wiki/IEC_80000-13>`_
 | `<https://www.iso.org/standard/31898.html>`_ (paywalled)
 
-Decimal units conform to SI standards, see:
+| Decimal units conform to SI standards, see:
 | `<https://en.wikipedia.org/wiki/International_System_of_Units>`_
 
 * Parameters
