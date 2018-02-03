@@ -109,6 +109,9 @@ will use ``decimal.Decimal``.
 Types
 ^^^^^
 
+Although the string representations for binary units end in ``iB``,
+the attributes do not for ease of use.
+
 +--------------+-------+-----------+
 | Type         | Short | Long      |
 +==============+=======+===========+
