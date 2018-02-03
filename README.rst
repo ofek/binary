@@ -162,5 +162,15 @@ License
 
 at your option.
 
+Changelog
+---------
+
+Important changes are emphasized.
+
+1.0.0
+^^^^^
+
+- Initial release
+
 .. _IEC: https://en.wikipedia.org/wiki/Binary_prefix
 .. _SI: https://en.wikipedia.org/wiki/International_System_of_Units
