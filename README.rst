@@ -94,8 +94,10 @@ will use ``decimal.Decimal``.
 | `<https://en.wikipedia.org/wiki/IEC_80000-13>`_
 | `<https://www.iso.org/standard/31898.html>`_ (paywalled)
 
+
 | Decimal units conform to SI standards, see:
 | `<https://en.wikipedia.org/wiki/International_System_of_Units>`_
+
 
 * Parameters
 
