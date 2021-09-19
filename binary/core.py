@@ -1,5 +1,3 @@
-from __future__ import division
-
 from collections import namedtuple
 
 from .utils import Decimal
@@ -102,7 +100,7 @@ DecimalUnits = namedtuple(
 
 
 def convert_units(n, unit=BYTE, to=None, si=False, exact=False):
-    """Converts between and within binary and decimal units. If no ``unit``
+    r"""Converts between and within binary and decimal units. If no ``unit``
     is specified, ``n`` is assumed to already be in bytes. If no ``to`` is
     specified, ``n`` will be converted to the highest unit possible. If
     no ``unit`` nor ``to`` is specified, the output will be binary units
@@ -131,7 +129,7 @@ def convert_units(n, unit=BYTE, to=None, si=False, exact=False):
     :rtype: tuple(quantity, string)
     """
     if unit not in PREFIXES:
-        raise ValueError('{} is not a valid binary unit.'.format(unit))
+        raise ValueError(f'{unit} is not a valid binary unit.')
 
     # Always work with bytes to simplify logic.
     n *= Decimal(unit) if exact else unit
@@ -140,7 +138,7 @@ def convert_units(n, unit=BYTE, to=None, si=False, exact=False):
         try:
             return n / to, PREFIXES[to]
         except KeyError:
-            raise ValueError('{} is not a valid binary unit.'.format(to))
+            raise ValueError(f'{to} is not a valid binary unit.')
 
     if unit in BINARY_PREFIXES and not si:
         if n < KIBIBYTE:
