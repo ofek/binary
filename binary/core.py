@@ -1,6 +1,5 @@
 from collections import namedtuple
-
-from .utils import Decimal
+from decimal import Decimal
 
 BYTE = 1
 
@@ -132,7 +131,9 @@ def convert_units(n, unit=BYTE, to=None, si=False, exact=False):
         raise ValueError(f'{unit} is not a valid binary unit.')
 
     # Always work with bytes to simplify logic.
-    n *= Decimal(unit) if exact else unit
+    if exact:
+        n = Decimal(str(n))
+    n *= unit
 
     if to:
         try:
