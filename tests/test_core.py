@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 import pytest
 
 import binary
@@ -167,6 +169,60 @@ class TestConvert:
 
     def test_yottabyte(self):
         assert convert_units(1, dunits.YB, dunits.YB) == (dunits.YB / 1000 ** 8, 'YB')
+
+
+class TestConvertFloatExact:
+    def test_byte(self):
+        assert convert_units(3.14, bunits.YB, bunits.B, exact=True) == (Decimal('3796027073589935608577392.64'), 'B')
+        assert convert_units(3.14, dunits.YB, dunits.B, exact=True) == (Decimal('3140000000000000000000000.00'), 'B')
+
+    def test_kibibyte(self):
+        assert convert_units(3.14, bunits.YB, bunits.KB, exact=True) == (Decimal('3707057689052671492751.36'), 'KiB')
+
+    def test_mebibyte(self):
+        assert convert_units(3.14, bunits.YB, bunits.MB, exact=True) == (Decimal('3620173524465499504.64'), 'MiB')
+
+    def test_gibibyte(self):
+        assert convert_units(3.14, bunits.YB, bunits.GB, exact=True) == (Decimal('3535325707485839.36'), 'GiB')
+
+    def test_tebibyte(self):
+        assert convert_units(3.14, bunits.YB, bunits.TB, exact=True) == (Decimal('3452466511216.64'), 'TiB')
+
+    def test_pebibyte(self):
+        assert convert_units(3.14, bunits.YB, bunits.PB, exact=True) == (Decimal('3371549327.36'), 'PiB')
+
+    def test_exbibyte(self):
+        assert convert_units(3.14, bunits.YB, bunits.EB, exact=True) == (Decimal('3292528.64'), 'EiB')
+
+    def test_zebibyte(self):
+        assert convert_units(3.14, bunits.YB, bunits.ZB, exact=True) == (Decimal('3215.36'), 'ZiB')
+
+    def test_yobibyte(self):
+        assert convert_units(3.14, bunits.YB, bunits.YB, exact=True) == (Decimal('3.14'), 'YiB')
+
+    def test_kilobyte(self):
+        assert convert_units(3.14, dunits.YB, dunits.KB, exact=True) == (Decimal('3140000000000000000000.00'), 'KB')
+
+    def test_megabyte(self):
+        assert convert_units(3.14, dunits.YB, dunits.MB, exact=True) == (Decimal('3140000000000000000.00'), 'MB')
+
+    def test_gigabyte(self):
+        assert convert_units(3.14, dunits.YB, dunits.GB, exact=True) == (Decimal('3140000000000000.00'), 'GB')
+
+    def test_terabyte(self):
+        assert convert_units(3.14, dunits.YB, dunits.TB, exact=True) == (Decimal('3140000000000.00'), 'TB')
+
+    def test_petabyte(self):
+        assert convert_units(3.14, dunits.YB, dunits.PB, exact=True) == (Decimal('3140000000.00'), 'PB')
+
+    def test_exabyte(self):
+        assert convert_units(3.14, dunits.YB, dunits.EB, exact=True) == (Decimal('3140000.00'), 'EB')
+
+    def test_zettabyte(self):
+        assert convert_units(3.14, dunits.YB, dunits.ZB, exact=True) == (Decimal('3140.00'), 'ZB')
+
+    def test_yottabyte(self):
+        assert convert_units(3.14, dunits.YB, dunits.YB, exact=True) == (Decimal('3.14'), 'YB')
 
 
 class TestConvertUnknownTo:
