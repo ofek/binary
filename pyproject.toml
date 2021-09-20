@@ -15,3 +15,8 @@ requires = ['setuptools', 'wheel']
 
 [tool.hatch.commands]
 prerelease = 'hatch build'
+
+[tool.mypy]
+pretty = true
+show_error_codes = true
+strict = true

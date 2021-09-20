@@ -1,5 +1,5 @@
-from collections import namedtuple
 from decimal import Decimal
+from typing import NamedTuple, Optional, Tuple, Union
 
 BYTE = 1
 
@@ -50,19 +50,28 @@ PREFIXES = BINARY_PREFIXES.copy()
 PREFIXES.update(DECIMAL_PREFIXES)
 
 
-BinaryUnits = namedtuple(
-    'BinaryUnits', (
-        'BYTE', 'B',
-        'KIBIBYTE', 'KB',
-        'MEBIBYTE', 'MB',
-        'GIBIBYTE', 'GB',
-        'TEBIBYTE', 'TB',
-        'PEBIBYTE', 'PB',
-        'EXBIBYTE', 'EB',
-        'ZEBIBYTE', 'ZB',
-        'YOBIBYTE', 'YB',
-    )
-)(
+class _BinaryUnits(NamedTuple):
+    BYTE: int
+    B: int
+    KIBIBYTE: int
+    KB: int
+    MEBIBYTE: int
+    MB: int
+    GIBIBYTE: int
+    GB: int
+    TEBIBYTE: int
+    TB: int
+    PEBIBYTE: int
+    PB: int
+    EXBIBYTE: int
+    EB: int
+    ZEBIBYTE: int
+    ZB: int
+    YOBIBYTE: int
+    YB: int
+
+
+BinaryUnits = _BinaryUnits(
     BYTE, BYTE,
     KIBIBYTE, KIBIBYTE,
     MEBIBYTE, MEBIBYTE,
@@ -73,19 +82,30 @@ BinaryUnits = namedtuple(
     ZEBIBYTE, ZEBIBYTE,
     YOBIBYTE, YOBIBYTE,
 )
-DecimalUnits = namedtuple(
-    'DecimalUnits', (
-        'BYTE', 'B',
-        'KILOBYTE', 'KB',
-        'MEGABYTE', 'MB',
-        'GIGABYTE', 'GB',
-        'TERABYTE', 'TB',
-        'PETABYTE', 'PB',
-        'EXABYTE', 'EB',
-        'ZETTABYTE', 'ZB',
-        'YOTTABYTE', 'YB',
-    )
-)(
+
+
+class _DecimalUnits(NamedTuple):
+    BYTE: int
+    B: int
+    KILOBYTE: int
+    KB: int
+    MEGABYTE: int
+    MB: int
+    GIGABYTE: int
+    GB: int
+    TERABYTE: int
+    TB: int
+    PETABYTE: int
+    PB: int
+    EXABYTE: int
+    EB: int
+    ZETTABYTE: int
+    ZB: int
+    YOTTABYTE: int
+    YB: int
+
+
+DecimalUnits = _DecimalUnits(
     BYTE, BYTE,
     KILOBYTE, KILOBYTE,
     MEGABYTE, MEGABYTE,
@@ -98,7 +118,13 @@ DecimalUnits = namedtuple(
 )
 
 
-def convert_units(n, unit=BYTE, to=None, si=False, exact=False):
+def convert_units(
+    n: float,
+    unit: int = BYTE,
+    to: Optional[int] = None,
+    si: bool = False,
+    exact: bool = False
+) -> Tuple[Union[float, Decimal], str]:
     r"""Converts between and within binary and decimal units. If no ``unit``
     is specified, ``n`` is assumed to already be in bytes. If no ``to`` is
     specified, ``n`` will be converted to the highest unit possible. If
@@ -131,51 +157,53 @@ def convert_units(n, unit=BYTE, to=None, si=False, exact=False):
         raise ValueError(f'{unit} is not a valid binary unit.')
 
     # Always work with bytes to simplify logic.
+    b: Union[float, Decimal]
     if exact:
-        n = Decimal(str(n))
-    n *= unit
+        b = Decimal(str(n)) * unit
+    else:
+        b = n * unit
 
     if to:
         try:
-            return n / to, PREFIXES[to]
+            return b / to, PREFIXES[to]
         except KeyError:
             raise ValueError(f'{to} is not a valid binary unit.')
 
     if unit in BINARY_PREFIXES and not si:
-        if n < KIBIBYTE:
-            return n, 'B'
-        elif n < MEBIBYTE:
-            return n / KIBIBYTE, 'KiB'
-        elif n < GIBIBYTE:
-            return n / MEBIBYTE, 'MiB'
-        elif n < TEBIBYTE:
-            return n / GIBIBYTE, 'GiB'
-        elif n < PEBIBYTE:
-            return n / TEBIBYTE, 'TiB'
-        elif n < EXBIBYTE:
-            return n / PEBIBYTE, 'PiB'
-        elif n < ZEBIBYTE:
-            return n / EXBIBYTE, 'EiB'
-        elif n < YOBIBYTE:
-            return n / ZEBIBYTE, 'ZiB'
+        if b < KIBIBYTE:
+            return b, 'B'
+        elif b < MEBIBYTE:
+            return b / KIBIBYTE, 'KiB'
+        elif b < GIBIBYTE:
+            return b / MEBIBYTE, 'MiB'
+        elif b < TEBIBYTE:
+            return b / GIBIBYTE, 'GiB'
+        elif b < PEBIBYTE:
+            return b / TEBIBYTE, 'TiB'
+        elif b < EXBIBYTE:
+            return b / PEBIBYTE, 'PiB'
+        elif b < ZEBIBYTE:
+            return b / EXBIBYTE, 'EiB'
+        elif b < YOBIBYTE:
+            return b / ZEBIBYTE, 'ZiB'
         else:
-            return n / YOBIBYTE, 'YiB'
+            return b / YOBIBYTE, 'YiB'
     else:
-        if n < KILOBYTE:
-            return n, 'B'
-        elif n < MEGABYTE:
-            return n / KILOBYTE, 'KB'
-        elif n < GIGABYTE:
-            return n / MEGABYTE, 'MB'
-        elif n < TERABYTE:
-            return n / GIGABYTE, 'GB'
-        elif n < PETABYTE:
-            return n / TERABYTE, 'TB'
-        elif n < EXABYTE:
-            return n / PETABYTE, 'PB'
-        elif n < ZETTABYTE:
-            return n / EXABYTE, 'EB'
-        elif n < YOTTABYTE:
-            return n / ZETTABYTE, 'ZB'
+        if b < KILOBYTE:
+            return b, 'B'
+        elif b < MEGABYTE:
+            return b / KILOBYTE, 'KB'
+        elif b < GIGABYTE:
+            return b / MEGABYTE, 'MB'
+        elif b < TERABYTE:
+            return b / GIGABYTE, 'GB'
+        elif b < PETABYTE:
+            return b / TERABYTE, 'TB'
+        elif b < EXABYTE:
+            return b / PETABYTE, 'PB'
+        elif b < ZETTABYTE:
+            return b / EXABYTE, 'EB'
+        elif b < YOTTABYTE:
+            return b / ZETTABYTE, 'ZB'
         else:
-            return n / YOTTABYTE, 'YB'
+            return b / YOTTABYTE, 'YB'
