@@ -5,13 +5,9 @@ binary
     :target: https://pypi.org/project/binary
     :alt: Latest PyPI version
 
-.. image:: https://img.shields.io/travis/ofek/binary/master.svg?style=flat-square
-    :target: https://travis-ci.org/ofek/binary
-    :alt: Travis CI
-
-.. image:: https://img.shields.io/appveyor/ci/ofek/binary/master.svg?style=flat-square
-    :target: https://ci.appveyor.com/project/ofek/binary
-    :alt: AppVeyor CI
+.. image:: https://github.com/ofek/binary/workflows/test/badge.svg
+    :target: https://github.com/ofek/binary/actions/workflows/test.yml
+    :alt: GitHub Actions
 
 .. image:: https://img.shields.io/codecov/c/github/ofek/binary/master.svg?style=flat-square
     :target: https://codecov.io/gh/ofek/binary
