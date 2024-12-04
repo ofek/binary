@@ -163,6 +163,11 @@ Changelog
 
 Important changes are emphasized.
 
+1.0.1
+^^^^^
+
+- Fix syntax warning on newer versions of Python
+
 1.0.0
 ^^^^^
 

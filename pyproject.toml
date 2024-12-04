@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -31,7 +31,7 @@ classifiers = [
 Homepage = "https://github.com/ofek/binary"
 
 [tool.hatch.version]
-path = "binary/__init__.py"
+source = "vcs"
 
 [tool.hatch.build.targets.sdist]
 include = [

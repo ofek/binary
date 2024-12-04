@@ -23,4 +23,4 @@ __all__ = [
     "YOBIBYTE", "YOTTABYTE",
     "BinaryUnits", "DecimalUnits", "convert_units",
 ]
-__version__ = '1.0.0'
+__version__ = '1.0.1'
