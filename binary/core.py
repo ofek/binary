@@ -140,7 +140,7 @@ def convert_units(
     Decimal units conform to SI standards, see:
     https://en.wikipedia.org/wiki/International_System_of_Units
 
-    :param n: The number of ``unit``\ s.
+    :param n: The number of ``unit``s.
     :type n: ``int`` or ``float``
     :param unit: The unit ``n`` represents.
     :type unit: one of the global constants
