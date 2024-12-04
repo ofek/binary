@@ -1,20 +1,42 @@
-[metadata]
-name = 'binary'
-version = '0.0.1'
-description = ''
-author = 'Ofek Lev'
-author_email = 'ofekmeister@gmail.com'
-license = 'MIT/Apache-2.0'
-url = 'https://github.com/ofek/binary'
-
-[requires]
-python_version = ['3.7', '3.8', '3.9', '3.10', 'pypy3']
-
 [build-system]
-requires = ['setuptools', 'wheel']
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.hatch.commands]
-prerelease = 'hatch build'
+[project]
+name = "binary"
+dynamic = ["version"]
+readme = "README.rst"
+license = "MIT OR Apache-2.0"
+requires-python = ">=3.9"
+authors = [
+    { name = "Ofek Lev", email = "oss@ofek.dev" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[project.urls]
+Homepage = "https://github.com/ofek/binary"
+
+[tool.hatch.version]
+path = "binary/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/binary",
+]
 
 [tool.mypy]
 pretty = true
