@@ -170,40 +170,40 @@ def convert_units(
             raise ValueError(f'{to} is not a valid unit.')
 
     if unit in BINARY_PREFIXES and not si:
-        if b < KIBIBYTE:
+        if abs(b) < KIBIBYTE:
             return b, 'B'
-        elif b < MEBIBYTE:
+        elif abs(b) < MEBIBYTE:
             return b / KIBIBYTE, 'KiB'
-        elif b < GIBIBYTE:
+        elif abs(b) < GIBIBYTE:
             return b / MEBIBYTE, 'MiB'
-        elif b < TEBIBYTE:
+        elif abs(b) < TEBIBYTE:
             return b / GIBIBYTE, 'GiB'
-        elif b < PEBIBYTE:
+        elif abs(b) < PEBIBYTE:
             return b / TEBIBYTE, 'TiB'
-        elif b < EXBIBYTE:
+        elif abs(b) < EXBIBYTE:
             return b / PEBIBYTE, 'PiB'
-        elif b < ZEBIBYTE:
+        elif abs(b) < ZEBIBYTE:
             return b / EXBIBYTE, 'EiB'
-        elif b < YOBIBYTE:
+        elif abs(b) < YOBIBYTE:
             return b / ZEBIBYTE, 'ZiB'
         else:
             return b / YOBIBYTE, 'YiB'
     else:
-        if b < KILOBYTE:
+        if abs(b) < KILOBYTE:
             return b, 'B'
-        elif b < MEGABYTE:
+        elif abs(b) < MEGABYTE:
             return b / KILOBYTE, 'KB'
-        elif b < GIGABYTE:
+        elif abs(b) < GIGABYTE:
             return b / MEGABYTE, 'MB'
-        elif b < TERABYTE:
+        elif abs(b) < TERABYTE:
             return b / GIGABYTE, 'GB'
-        elif b < PETABYTE:
+        elif abs(b) < PETABYTE:
             return b / TERABYTE, 'TB'
-        elif b < EXABYTE:
+        elif abs(b) < EXABYTE:
             return b / PETABYTE, 'PB'
-        elif b < ZETTABYTE:
+        elif abs(b) < ZETTABYTE:
             return b / EXABYTE, 'EB'
-        elif b < YOTTABYTE:
+        elif abs(b) < YOTTABYTE:
             return b / ZETTABYTE, 'ZB'
         else:
             return b / YOTTABYTE, 'YB'
