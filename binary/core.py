@@ -1,5 +1,5 @@
 from decimal import Decimal
-from typing import NamedTuple, Optional, Tuple, Union
+from typing import TYPE_CHECKING, NamedTuple, Optional, Tuple, Union
 
 BYTE = 1
 
@@ -169,41 +169,45 @@ def convert_units(
         except KeyError:
             raise ValueError(f'{to} is not a valid unit.')
 
+    babs = abs(b)
+    if TYPE_CHECKING:
+        assert isinstance(babs, float) or isinstance(babs, Decimal)
+
     if unit in BINARY_PREFIXES and not si:
-        if abs(b) < KIBIBYTE:
+        if babs < KIBIBYTE:
             return b, 'B'
-        elif abs(b) < MEBIBYTE:
+        elif babs < MEBIBYTE:
             return b / KIBIBYTE, 'KiB'
-        elif abs(b) < GIBIBYTE:
+        elif babs < GIBIBYTE:
             return b / MEBIBYTE, 'MiB'
-        elif abs(b) < TEBIBYTE:
+        elif babs < TEBIBYTE:
             return b / GIBIBYTE, 'GiB'
-        elif abs(b) < PEBIBYTE:
+        elif babs < PEBIBYTE:
             return b / TEBIBYTE, 'TiB'
-        elif abs(b) < EXBIBYTE:
+        elif babs < EXBIBYTE:
             return b / PEBIBYTE, 'PiB'
-        elif abs(b) < ZEBIBYTE:
+        elif babs < ZEBIBYTE:
             return b / EXBIBYTE, 'EiB'
-        elif abs(b) < YOBIBYTE:
+        elif babs < YOBIBYTE:
             return b / ZEBIBYTE, 'ZiB'
         else:
             return b / YOBIBYTE, 'YiB'
     else:
-        if abs(b) < KILOBYTE:
+        if babs < KILOBYTE:
             return b, 'B'
-        elif abs(b) < MEGABYTE:
+        elif babs < MEGABYTE:
             return b / KILOBYTE, 'KB'
-        elif abs(b) < GIGABYTE:
+        elif babs < GIGABYTE:
             return b / MEGABYTE, 'MB'
-        elif abs(b) < TERABYTE:
+        elif babs < TERABYTE:
             return b / GIGABYTE, 'GB'
-        elif abs(b) < PETABYTE:
+        elif babs < PETABYTE:
             return b / TERABYTE, 'TB'
-        elif abs(b) < EXABYTE:
+        elif babs < EXABYTE:
             return b / PETABYTE, 'PB'
-        elif abs(b) < ZETTABYTE:
+        elif babs < ZETTABYTE:
             return b / EXABYTE, 'EB'
-        elif abs(b) < YOTTABYTE:
+        elif babs < YOTTABYTE:
             return b / ZETTABYTE, 'ZB'
         else:
             return b / YOTTABYTE, 'YB'
