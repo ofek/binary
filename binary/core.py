@@ -1,5 +1,6 @@
 from decimal import Decimal
 from typing import TYPE_CHECKING, NamedTuple, Optional, Tuple, Union
+import typing
 
 BYTE = 1
 
@@ -169,9 +170,7 @@ def convert_units(
         except KeyError:
             raise ValueError(f'{to} is not a valid unit.')
 
-    babs = abs(b)
-    if TYPE_CHECKING:
-        assert isinstance(babs, float) or isinstance(babs, Decimal)
+    babs = typing.cast(Union[float, Decimal], abs(b))
 
     if unit in BINARY_PREFIXES and not si:
         if babs < KIBIBYTE:
