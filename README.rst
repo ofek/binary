@@ -5,7 +5,7 @@ binary
     :target: https://pypi.org/project/binary
     :alt: Latest PyPI version
 
-.. image:: https://github.com/ofek/binary/workflows/test/badge.svg
+.. image:: https://github.com/ofek/binary/actions/workflows/test.yml/badge.svg
     :target: https://github.com/ofek/binary/actions/workflows/test.yml
     :alt: GitHub Actions
 
@@ -17,9 +17,13 @@ binary
     :target: https://pypi.org/project/binary
     :alt: Supported Python versions
 
-.. image:: https://img.shields.io/pypi/l/binary.svg?style=flat-square
-    :target: https://choosealicense.com/licenses
+.. image:: https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-9400d3.svg
+    :target: https://spdx.org/licenses/
     :alt: License
+
+.. image:: https://img.shields.io/github/sponsors/ofek?logo=GitHub%20Sponsors&style=social
+    :target: https://github.com/sponsors/ofek
+    :alt: GitHub sponsors
 
 -----
 
@@ -31,10 +35,6 @@ binary (`IEC`_) and decimal (`SI`_) units.
 
 Installation
 ------------
-
-``binary`` is distributed on `PyPI <https://pypi.org>`_ as a universal
-wheel and is available on Linux/macOS and Windows and supports
-Python 2.7/3.5+ and PyPy.
 
 .. code-block:: bash
 
@@ -162,6 +162,11 @@ Changelog
 ---------
 
 Important changes are emphasized.
+
+1.0.2
+^^^^^
+
+- Perform floor division when explicitly converting to bytes
 
 1.0.1
 ^^^^^

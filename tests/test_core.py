@@ -173,8 +173,8 @@ class TestConvert:
 
 class TestConvertFloatExact:
     def test_byte(self) -> None:
-        assert convert_units(3.14, bunits.YB, bunits.B, exact=True) == (Decimal('3796027073589935608577392.64'), 'B')
-        assert convert_units(3.14, dunits.YB, dunits.B, exact=True) == (Decimal('3140000000000000000000000.00'), 'B')
+        assert convert_units(3.14, bunits.YB, bunits.B, exact=True) == (Decimal('3796027073589935608577392'), 'B')
+        assert convert_units(3.14, dunits.YB, dunits.B, exact=True) == (Decimal('3140000000000000000000000'), 'B')
 
     def test_kibibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.KB, exact=True) == (Decimal('3707057689052671492751.36'), 'KiB')
