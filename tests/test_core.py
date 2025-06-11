@@ -119,8 +119,8 @@ class TestAccurateString:
 
 class TestConvert:
     def test_byte(self) -> None:
-        assert convert_units(1, bunits.YB, bunits.B) == (bunits.YB / 1, 'B')
-        assert convert_units(1, dunits.YB, dunits.B) == (dunits.YB / 1, 'B')
+        assert convert_units(1, bunits.YB, bunits.B) == (bunits.YB // 1, 'B')
+        assert convert_units(1, dunits.YB, dunits.B) == (dunits.YB // 1, 'B')
 
     def test_kibibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.KB) == (bunits.YB / 1024 ** 1, 'KiB')
