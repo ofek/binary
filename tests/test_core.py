@@ -121,108 +121,144 @@ class TestConvert:
     def test_byte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.B) == (bunits.YB // 1, 'B')
         assert convert_units(1, dunits.YB, dunits.B) == (dunits.YB // 1, 'B')
+        assert convert_units(-1, bunits.YB, bunits.B) == (-bunits.YB // 1, 'B')
+        assert convert_units(-1, dunits.YB, dunits.B) == (-dunits.YB // 1, 'B')
 
     def test_kibibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.KB) == (bunits.YB / 1024 ** 1, 'KiB')
+        assert convert_units(-1, bunits.YB, bunits.KB) == (-bunits.YB / 1024 ** 1, 'KiB')
 
     def test_mebibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.MB) == (bunits.YB / 1024 ** 2, 'MiB')
+        assert convert_units(-1, bunits.YB, bunits.MB) == (-bunits.YB / 1024 ** 2, 'MiB')
 
     def test_gibibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.GB) == (bunits.YB / 1024 ** 3, 'GiB')
+        assert convert_units(-1, bunits.YB, bunits.GB) == (-bunits.YB / 1024 ** 3, 'GiB')
 
     def test_tebibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.TB) == (bunits.YB / 1024 ** 4, 'TiB')
+        assert convert_units(-1, bunits.YB, bunits.TB) == (-bunits.YB / 1024 ** 4, 'TiB')
 
     def test_pebibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.PB) == (bunits.YB / 1024 ** 5, 'PiB')
+        assert convert_units(-1, bunits.YB, bunits.PB) == (-bunits.YB / 1024 ** 5, 'PiB')
 
     def test_exbibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.EB) == (bunits.YB / 1024 ** 6, 'EiB')
+        assert convert_units(-1, bunits.YB, bunits.EB) == (-bunits.YB / 1024 ** 6, 'EiB')
 
     def test_zebibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.ZB) == (bunits.YB / 1024 ** 7, 'ZiB')
+        assert convert_units(-1, bunits.YB, bunits.ZB) == (-bunits.YB / 1024 ** 7, 'ZiB')
 
     def test_yobibyte(self) -> None:
         assert convert_units(1, bunits.YB, bunits.YB) == (bunits.YB / 1024 ** 8, 'YiB')
+        assert convert_units(-1, bunits.YB, bunits.YB) == (-bunits.YB / 1024 ** 8, 'YiB')
 
     def test_kilobyte(self) -> None:
         assert convert_units(1, dunits.YB, dunits.KB) == (dunits.YB / 1000 ** 1, 'KB')
+        assert convert_units(-1, dunits.YB, dunits.KB) == (-dunits.YB / 1000 ** 1, 'KB')
 
     def test_megabyte(self) -> None:
         assert convert_units(1, dunits.YB, dunits.MB) == (dunits.YB / 1000 ** 2, 'MB')
+        assert convert_units(-1, dunits.YB, dunits.MB) == (-dunits.YB / 1000 ** 2, 'MB')
 
     def test_gigabyte(self) -> None:
         assert convert_units(1, dunits.YB, dunits.GB) == (dunits.YB / 1000 ** 3, 'GB')
+        assert convert_units(-1, dunits.YB, dunits.GB) == (-dunits.YB / 1000 ** 3, 'GB')
 
     def test_terabyte(self) -> None:
         assert convert_units(1, dunits.YB, dunits.TB) == (dunits.YB / 1000 ** 4, 'TB')
+        assert convert_units(-1, dunits.YB, dunits.TB) == (-dunits.YB / 1000 ** 4, 'TB')
 
     def test_petabyte(self) -> None:
         assert convert_units(1, dunits.YB, dunits.PB) == (dunits.YB / 1000 ** 5, 'PB')
+        assert convert_units(-1, dunits.YB, dunits.PB) == (-dunits.YB / 1000 ** 5, 'PB')
 
     def test_exabyte(self) -> None:
         assert convert_units(1, dunits.YB, dunits.EB) == (dunits.YB / 1000 ** 6, 'EB')
+        assert convert_units(-1, dunits.YB, dunits.EB) == (-dunits.YB / 1000 ** 6, 'EB')
 
     def test_zettabyte(self) -> None:
         assert convert_units(1, dunits.YB, dunits.ZB) == (dunits.YB / 1000 ** 7, 'ZB')
+        assert convert_units(-1, dunits.YB, dunits.ZB) == (-dunits.YB / 1000 ** 7, 'ZB')
 
     def test_yottabyte(self) -> None:
         assert convert_units(1, dunits.YB, dunits.YB) == (dunits.YB / 1000 ** 8, 'YB')
+        assert convert_units(-1, dunits.YB, dunits.YB) == (-dunits.YB / 1000 ** 8, 'YB')
 
 
 class TestConvertFloatExact:
     def test_byte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.B, exact=True) == (Decimal('3796027073589935608577392'), 'B')
         assert convert_units(3.14, dunits.YB, dunits.B, exact=True) == (Decimal('3140000000000000000000000'), 'B')
+        assert convert_units(-3.14, bunits.YB, bunits.B, exact=True) == (Decimal('-3796027073589935608577392'), 'B')
+        assert convert_units(-3.14, dunits.YB, dunits.B, exact=True) == (Decimal('-3140000000000000000000000'), 'B')
 
     def test_kibibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.KB, exact=True) == (Decimal('3707057689052671492751.36'), 'KiB')
+        assert convert_units(-3.14, bunits.YB, bunits.KB, exact=True) == (Decimal('-3707057689052671492751.36'), 'KiB')
 
     def test_mebibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.MB, exact=True) == (Decimal('3620173524465499504.64'), 'MiB')
+        assert convert_units(-3.14, bunits.YB, bunits.MB, exact=True) == (Decimal('-3620173524465499504.64'), 'MiB')
 
     def test_gibibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.GB, exact=True) == (Decimal('3535325707485839.36'), 'GiB')
+        assert convert_units(-3.14, bunits.YB, bunits.GB, exact=True) == (Decimal('-3535325707485839.36'), 'GiB')
 
     def test_tebibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.TB, exact=True) == (Decimal('3452466511216.64'), 'TiB')
+        assert convert_units(-3.14, bunits.YB, bunits.TB, exact=True) == (Decimal('-3452466511216.64'), 'TiB')
 
     def test_pebibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.PB, exact=True) == (Decimal('3371549327.36'), 'PiB')
+        assert convert_units(-3.14, bunits.YB, bunits.PB, exact=True) == (Decimal('-3371549327.36'), 'PiB')
 
     def test_exbibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.EB, exact=True) == (Decimal('3292528.64'), 'EiB')
+        assert convert_units(-3.14, bunits.YB, bunits.EB, exact=True) == (Decimal('-3292528.64'), 'EiB')
 
     def test_zebibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.ZB, exact=True) == (Decimal('3215.36'), 'ZiB')
+        assert convert_units(-3.14, bunits.YB, bunits.ZB, exact=True) == (Decimal('-3215.36'), 'ZiB')
 
     def test_yobibyte(self) -> None:
         assert convert_units(3.14, bunits.YB, bunits.YB, exact=True) == (Decimal('3.14'), 'YiB')
+        assert convert_units(-3.14, bunits.YB, bunits.YB, exact=True) == (Decimal('-3.14'), 'YiB')
 
     def test_kilobyte(self) -> None:
         assert convert_units(3.14, dunits.YB, dunits.KB, exact=True) == (Decimal('3140000000000000000000.00'), 'KB')
+        assert convert_units(-3.14, dunits.YB, dunits.KB, exact=True) == (Decimal('-3140000000000000000000.00'), 'KB')
 
     def test_megabyte(self) -> None:
         assert convert_units(3.14, dunits.YB, dunits.MB, exact=True) == (Decimal('3140000000000000000.00'), 'MB')
+        assert convert_units(-3.14, dunits.YB, dunits.MB, exact=True) == (Decimal('-3140000000000000000.00'), 'MB')
 
     def test_gigabyte(self) -> None:
         assert convert_units(3.14, dunits.YB, dunits.GB, exact=True) == (Decimal('3140000000000000.00'), 'GB')
+        assert convert_units(-3.14, dunits.YB, dunits.GB, exact=True) == (Decimal('-3140000000000000.00'), 'GB')
 
     def test_terabyte(self) -> None:
         assert convert_units(3.14, dunits.YB, dunits.TB, exact=True) == (Decimal('3140000000000.00'), 'TB')
+        assert convert_units(-3.14, dunits.YB, dunits.TB, exact=True) == (Decimal('-3140000000000.00'), 'TB')
 
     def test_petabyte(self) -> None:
         assert convert_units(3.14, dunits.YB, dunits.PB, exact=True) == (Decimal('3140000000.00'), 'PB')
+        assert convert_units(-3.14, dunits.YB, dunits.PB, exact=True) == (Decimal('-3140000000.00'), 'PB')
 
     def test_exabyte(self) -> None:
         assert convert_units(3.14, dunits.YB, dunits.EB, exact=True) == (Decimal('3140000.00'), 'EB')
+        assert convert_units(-3.14, dunits.YB, dunits.EB, exact=True) == (Decimal('-3140000.00'), 'EB')
 
     def test_zettabyte(self) -> None:
         assert convert_units(3.14, dunits.YB, dunits.ZB, exact=True) == (Decimal('3140.00'), 'ZB')
+        assert convert_units(-3.14, dunits.YB, dunits.ZB, exact=True) == (Decimal('-3140.00'), 'ZB')
 
     def test_yottabyte(self) -> None:
         assert convert_units(3.14, dunits.YB, dunits.YB, exact=True) == (Decimal('3.14'), 'YB')
+        assert convert_units(-3.14, dunits.YB, dunits.YB, exact=True) == (Decimal('-3.14'), 'YB')
 
 
 class TestConvertUnknownTo:
@@ -231,68 +267,102 @@ class TestConvertUnknownTo:
         assert convert_units(bunits.KB - 1) == (bunits.KB - 1, 'B')
         assert convert_units(dunits.B, si=True) == (dunits.B, 'B')
         assert convert_units(dunits.KB - 1, si=True) == (dunits.KB - 1, 'B')
+        assert convert_units(-bunits.B) == (-bunits.B, 'B')
+        assert convert_units(-bunits.KB + 1) == (-bunits.KB + 1, 'B')
+        assert convert_units(-dunits.B, si=True) == (-dunits.B, 'B')
+        assert convert_units(-dunits.KB + 1, si=True) == (-dunits.KB + 1, 'B')
 
     def test_kibibyte(self) -> None:
         assert convert_units(bunits.KB) == (bunits.KB / bunits.KB, 'KiB')
         assert convert_units(bunits.MB - 1) == ((bunits.MB - 1) / bunits.KB, 'KiB')
+        assert convert_units(-bunits.KB) == (-bunits.KB / bunits.KB, 'KiB')
+        assert convert_units(-bunits.MB + 1) == ((-bunits.MB + 1) / bunits.KB, 'KiB')
 
     def test_mebibyte(self) -> None:
         assert convert_units(bunits.MB) == (bunits.MB / bunits.MB, 'MiB')
         assert convert_units(bunits.GB - 1) == ((bunits.GB - 1) / bunits.MB, 'MiB')
+        assert convert_units(-bunits.MB) == (-bunits.MB / bunits.MB, 'MiB')
+        assert convert_units(-bunits.GB + 1) == ((-bunits.GB + 1) / bunits.MB, 'MiB')
 
     def test_gibibyte(self) -> None:
         assert convert_units(bunits.GB) == (bunits.GB / bunits.GB, 'GiB')
         assert convert_units(bunits.TB - 1) == ((bunits.TB - 1) / bunits.GB, 'GiB')
+        assert convert_units(-bunits.GB) == (-bunits.GB / bunits.GB, 'GiB')
+        assert convert_units(-bunits.TB + 1) == ((-bunits.TB + 1) / bunits.GB, 'GiB')
 
     def test_tebibyte(self) -> None:
         assert convert_units(bunits.TB) == (bunits.TB / bunits.TB, 'TiB')
         assert convert_units(bunits.PB - 1) == ((bunits.PB - 1) / bunits.TB, 'TiB')
+        assert convert_units(-bunits.TB) == (-bunits.TB / bunits.TB, 'TiB')
+        assert convert_units(-bunits.PB + 1) == ((-bunits.PB + 1) / bunits.TB, 'TiB')
 
     def test_pebibyte(self) -> None:
         assert convert_units(bunits.PB) == (bunits.PB / bunits.PB, 'PiB')
         assert convert_units(bunits.EB - 1) == ((bunits.EB - 1) / bunits.PB, 'PiB')
+        assert convert_units(-bunits.PB) == (-bunits.PB / bunits.PB, 'PiB')
+        assert convert_units(-bunits.EB + 1) == ((-bunits.EB + 1) / bunits.PB, 'PiB')
 
     def test_exbibyte(self) -> None:
         assert convert_units(bunits.EB) == (bunits.EB / bunits.EB, 'EiB')
         assert convert_units(bunits.ZB - 1) == ((bunits.ZB - 1) / bunits.EB, 'EiB')
+        assert convert_units(-bunits.EB) == (-bunits.EB / bunits.EB, 'EiB')
+        assert convert_units(-bunits.ZB + 1) == ((-bunits.ZB + 1) / bunits.EB, 'EiB')
 
     def test_zebibyte(self) -> None:
         assert convert_units(bunits.ZB) == (bunits.ZB / bunits.ZB, 'ZiB')
         assert convert_units(bunits.YB - 1) == ((bunits.YB - 1) / bunits.ZB, 'ZiB')
+        assert convert_units(-bunits.ZB) == (-bunits.ZB / bunits.ZB, 'ZiB')
+        assert convert_units(-bunits.YB + 1) == ((-bunits.YB + 1) / bunits.ZB, 'ZiB')
 
     def test_yobibyte(self) -> None:
         assert convert_units(bunits.YB) == (bunits.YB / bunits.YB, 'YiB')
+        assert convert_units(-bunits.YB) == (-bunits.YB / bunits.YB, 'YiB')
 
     def test_kilobyte(self) -> None:
         assert convert_units(dunits.KB, si=True) == (dunits.KB / dunits.KB, 'KB')
         assert convert_units(dunits.MB - 1, si=True) == ((dunits.MB - 1) / dunits.KB, 'KB')
+        assert convert_units(-dunits.KB, si=True) == (-dunits.KB / dunits.KB, 'KB')
+        assert convert_units(-dunits.MB + 1, si=True) == ((-dunits.MB + 1) / dunits.KB, 'KB')
 
     def test_megabyte(self) -> None:
         assert convert_units(dunits.MB, si=True) == (dunits.MB / dunits.MB, 'MB')
         assert convert_units(dunits.GB - 1, si=True) == ((dunits.GB - 1) / dunits.MB, 'MB')
+        assert convert_units(-dunits.MB, si=True) == (-dunits.MB / dunits.MB, 'MB')
+        assert convert_units(-dunits.GB + 1, si=True) == ((-dunits.GB + 1) / dunits.MB, 'MB')
 
     def test_gigabyte(self) -> None:
         assert convert_units(dunits.GB, si=True) == (dunits.GB / dunits.GB, 'GB')
         assert convert_units(dunits.TB - 1, si=True) == ((dunits.TB - 1) / dunits.GB, 'GB')
+        assert convert_units(-dunits.GB, si=True) == (-dunits.GB / dunits.GB, 'GB')
+        assert convert_units(-dunits.TB + 1, si=True) == ((-dunits.TB + 1) / dunits.GB, 'GB')
 
     def test_terabyte(self) -> None:
         assert convert_units(dunits.TB, si=True) == (dunits.TB / dunits.TB, 'TB')
         assert convert_units(dunits.PB - 1, si=True) == ((dunits.PB - 1) / dunits.TB, 'TB')
+        assert convert_units(-dunits.TB, si=True) == (-dunits.TB / dunits.TB, 'TB')
+        assert convert_units(-dunits.PB + 1, si=True) == ((-dunits.PB + 1) / dunits.TB, 'TB')
 
     def test_petabyte(self) -> None:
         assert convert_units(dunits.PB, si=True) == (dunits.PB / dunits.PB, 'PB')
         assert convert_units(dunits.EB - 1, si=True) == ((dunits.EB - 1) / dunits.PB, 'PB')
+        assert convert_units(-dunits.PB, si=True) == (-dunits.PB / dunits.PB, 'PB')
+        assert convert_units(-dunits.EB + 1, si=True) == ((-dunits.EB + 1) / dunits.PB, 'PB')
 
     def test_exabyte(self) -> None:
         assert convert_units(dunits.EB, si=True) == (dunits.EB / dunits.EB, 'EB')
         assert convert_units(dunits.ZB - 1, si=True) == ((dunits.ZB - 1) / dunits.EB, 'EB')
+        assert convert_units(-dunits.EB, si=True) == (-dunits.EB / dunits.EB, 'EB')
+        assert convert_units(-dunits.ZB + 1, si=True) == ((-dunits.ZB + 1) / dunits.EB, 'EB')
 
     def test_zettabyte(self) -> None:
         assert convert_units(dunits.ZB, si=True) == (dunits.ZB / dunits.ZB, 'ZB')
         assert convert_units(dunits.YB - 1, si=True) == ((dunits.YB - 1) / dunits.ZB, 'ZB')
+        assert convert_units(-dunits.ZB, si=True) == (-dunits.ZB / dunits.ZB, 'ZB')
+        assert convert_units(-dunits.YB + 1, si=True) == ((-dunits.YB + 1) / dunits.ZB, 'ZB')
 
     def test_yottabyte(self) -> None:
         assert convert_units(dunits.YB, si=True) == (dunits.YB / dunits.YB, 'YB')
+        assert convert_units(-dunits.YB, si=True) == (-dunits.YB / dunits.YB, 'YB')
 
 
 class TestUnknownUnits:

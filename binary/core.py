@@ -1,5 +1,6 @@
 from decimal import Decimal
-from typing import NamedTuple, Optional, Tuple, Union
+from typing import TYPE_CHECKING, NamedTuple, Optional, Tuple, Union
+import typing
 
 BYTE = 1
 
@@ -169,41 +170,43 @@ def convert_units(
         except KeyError:
             raise ValueError(f'{to} is not a valid unit.')
 
+    babs = typing.cast(Union[float, Decimal], abs(b))
+
     if unit in BINARY_PREFIXES and not si:
-        if b < KIBIBYTE:
+        if babs < KIBIBYTE:
             return b, 'B'
-        elif b < MEBIBYTE:
+        elif babs < MEBIBYTE:
             return b / KIBIBYTE, 'KiB'
-        elif b < GIBIBYTE:
+        elif babs < GIBIBYTE:
             return b / MEBIBYTE, 'MiB'
-        elif b < TEBIBYTE:
+        elif babs < TEBIBYTE:
             return b / GIBIBYTE, 'GiB'
-        elif b < PEBIBYTE:
+        elif babs < PEBIBYTE:
             return b / TEBIBYTE, 'TiB'
-        elif b < EXBIBYTE:
+        elif babs < EXBIBYTE:
             return b / PEBIBYTE, 'PiB'
-        elif b < ZEBIBYTE:
+        elif babs < ZEBIBYTE:
             return b / EXBIBYTE, 'EiB'
-        elif b < YOBIBYTE:
+        elif babs < YOBIBYTE:
             return b / ZEBIBYTE, 'ZiB'
         else:
             return b / YOBIBYTE, 'YiB'
     else:
-        if b < KILOBYTE:
+        if babs < KILOBYTE:
             return b, 'B'
-        elif b < MEGABYTE:
+        elif babs < MEGABYTE:
             return b / KILOBYTE, 'KB'
-        elif b < GIGABYTE:
+        elif babs < GIGABYTE:
             return b / MEGABYTE, 'MB'
-        elif b < TERABYTE:
+        elif babs < TERABYTE:
             return b / GIGABYTE, 'GB'
-        elif b < PETABYTE:
+        elif babs < PETABYTE:
             return b / TERABYTE, 'TB'
-        elif b < EXABYTE:
+        elif babs < EXABYTE:
             return b / PETABYTE, 'PB'
-        elif b < ZETTABYTE:
+        elif babs < ZETTABYTE:
             return b / EXABYTE, 'EB'
-        elif b < YOTTABYTE:
+        elif babs < YOTTABYTE:
             return b / ZETTABYTE, 'ZB'
         else:
             return b / YOTTABYTE, 'YB'
