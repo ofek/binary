@@ -163,6 +163,12 @@ Changelog
 
 Important changes are emphasized.
 
+1.0.2
+^^^^^
+
+- Perform floor division when explicitly converting to bytes
+- Support negative values
+
 1.0.1
 ^^^^^
 
