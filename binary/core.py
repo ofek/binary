@@ -165,9 +165,9 @@ def convert_units(
 
     if to:
         try:
-            return b / to, PREFIXES[to]
+            return b // to if to == BYTE else b / to, PREFIXES[to]
         except KeyError:
-            raise ValueError(f'{to} is not a valid binary unit.')
+            raise ValueError(f'{to} is not a valid unit.')
 
     if unit in BINARY_PREFIXES and not si:
         if b < KIBIBYTE:
